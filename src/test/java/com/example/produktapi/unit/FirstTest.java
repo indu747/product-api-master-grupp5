@@ -1,6 +1,6 @@
-package com.example.produktapi;
+package com.example.produktapi.unit;
 import org.junit.jupiter.api.*;
-import org.springframework.util.Assert;
+
 public class FirstTest {
  //Skapar en första test Klass för att se till att projektet fungerar. Erik Östlind
     @Test
