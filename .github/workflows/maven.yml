@@ -30,7 +30,7 @@ jobs:
         settings-path: ${{ github.workspace }} 
         cache: maven
     - name: Install google chrome
-        run:|
+      run: |
               chmod +x ./scripts/InstallChrome.sh
               ./scripts/InstallChrome.sh 
     - name: Build with Maven
