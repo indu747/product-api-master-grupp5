@@ -24,7 +24,7 @@ public class StepDefinition {
         options.addArguments("--disable-gpu"); // Applicable to Windows OS
         options.addArguments("--remote-debugging-port=9222"); // Remote debugging port
         options.setBinary("/usr/bin/google-chrome");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
      
     }
 
