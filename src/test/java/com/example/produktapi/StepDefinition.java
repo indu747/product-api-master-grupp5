@@ -16,6 +16,10 @@ public class StepDefinition {
     public void setup(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--no-sandbox"); // Bypass OS security model
+        options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
+        options.addArguments("--disable-gpu"); // Applicable to Windows OS
+        options.addArguments("--remote-debugging-port=9222"); // Remote debugging port
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
