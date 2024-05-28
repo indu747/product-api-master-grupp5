@@ -44,16 +44,4 @@ public class StepDefinition {
         Assert.assertEquals(currentURL,"https://www.google.se/");
     }
 
-    @Given("user visit https:\\/\\/webshop-agil-testautomatiserare.netlify.app\\/")
-    public void user_visit_https_webshop_agil_testautomatiserare_netlify_app() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
-    }
-
-    @Then("the title should be {string}")
-    public void the_title_should_be(String expectedTitle) {
-        String actualTitle = driver.getTitle();
-        assertEquals(expectedTitle, actualTitle);
-    }
-
-
 }
