@@ -46,4 +46,18 @@ public class ProductModelTest {
         product.setId(512);
         Assertions.assertEquals(512,product.getId(),"id should be 512");
     }
+    //Omar
+    @Test
+    @DisplayName("getCategory Test")
+    public void getCategoryTest(){
+        Product product = new Product("Test produkt",20.0,"Test Category","produkten är i toppklass","En bild");
+        Assertions.assertEquals("Test Category", product.getCategory(), "Category should be 'Test Category'");
+    }
+    @Test
+    @DisplayName("setCategory Test")
+    public void setCategoryTest(){
+        Product product = new Product("Test produkt",20.0,"Test Category","Produkten är i toppklass","En bild");
+        product.setCategory("Category Cars");
+        Assertions.assertEquals("Category Cars", product.getCategory(), "Category should be 'Category Cars'");
+    }
 }
