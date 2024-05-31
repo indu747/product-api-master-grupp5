@@ -53,11 +53,27 @@ public class ProductModelTest {
         Product product = new Product("Test produkt",20.0,"Test Category","produkten är i toppklass","En bild");
         Assertions.assertEquals("Test Category", product.getCategory(), "Category should be 'Test Category'");
     }
+    //Omar
     @Test
     @DisplayName("setCategory Test")
     public void setCategoryTest(){
         Product product = new Product("Test produkt",20.0,"Test Category","Produkten är i toppklass","En bild");
         product.setCategory("Category Cars");
         Assertions.assertEquals("Category Cars", product.getCategory(), "Category should be 'Category Cars'");
+    }
+    //Omar
+    @Test
+    @DisplayName("GetPrice Test")
+    public void getPriceTest(){
+        Product product = new Product("Test produkt",30.0,"Test Category","produkten är i toppklass","En bild");
+        Assertions.assertEquals(30.0, product.getPrice(), "Price should be 'Test Price'");
+    }
+    //Omar
+    @Test
+    @DisplayName("setPrice Test")
+    public void setPriceTest(){
+        Product product = new Product("Test produkt",30.0,"Test Category","Produkten är i toppklass","En bild");
+        product.setPrice(40.0);
+        Assertions.assertEquals(40.0, product.getPrice(), "Price should be '40.0'");
     }
 }
