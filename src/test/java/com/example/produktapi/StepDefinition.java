@@ -5,32 +5,30 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class StepDefinition {
     WebDriver driver;
+
     @Before
     public void setup(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        options.addArguments("--no-sandbox"); // Bypass OS security model
-        options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
-        options.addArguments("--disable-gpu"); // Applicable to Windows OS
-        options.addArguments("--remote-debugging-port=9222"); // Remote debugging port
+        //options.addArguments("--no-sandbox"); // Bypass OS security model
+        //options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
+        //options.addArguments("--disable-gpu"); // Applicable to Windows OS
+        //options.addArguments("--remote-debugging-port=9222"); // Remote debugging port
         //options.setBinary("/usr/bin/google-chrome"); // NEEDED FOR CI/CD? Otherwise remove*/
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -42,7 +40,7 @@ public class StepDefinition {
             driver.quit();
         }
     }
-//Erik Östlind
+    //Erik Östlind
     @Given("user is on homepage")
     public void user_is_on_homepage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -110,6 +108,4 @@ public class StepDefinition {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlToBe(href));
     }
-
-
-    }
+}
