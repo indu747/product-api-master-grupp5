@@ -9,7 +9,7 @@ Feature: Navbar
     Then user should get taken to <href>
     Examples:
       |nth Item|href|text|
-      |0    |"https://webshop-agil-testautomatiserare.netlify.app/"|"🛍️ The Shop"|
+      |0    |"https://webshop-agil-testautomatiserare.netlify.app/"|"🛍️ The Sho"|
       |1    |"https://webshop-agil-testautomatiserare.netlify.app/"|"Home"       |
       |2    |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"|
       |3    |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"|
