@@ -1,5 +1,5 @@
 Feature: Navbar
-//Erik Östlind
+  //Erik Östlind
   Scenario Outline: Navbar contains all items and are clickable on any page
     Given user is on <page>
     Then navbar has four links
@@ -7,7 +7,6 @@ Feature: Navbar
     And the <nth_item> contain link to <href>
     When user clicks on the <nth_item>
     Then user should get taken to <href>
-
     Examples:
       |page           |nth_item |href                                                          |text            |
       |"homepage"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
