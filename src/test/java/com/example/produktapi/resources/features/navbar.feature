@@ -1,5 +1,5 @@
 Feature: Navbar
-
+//Erik Östlind
   Scenario Outline: Navbar contains all items and are clickable on homepage
     Given user is on homepage
     Then navbar has four links

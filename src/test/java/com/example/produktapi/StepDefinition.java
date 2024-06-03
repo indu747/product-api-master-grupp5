@@ -42,7 +42,7 @@ public class StepDefinition {
             driver.quit();
         }
     }
-
+//Erik Östlind
     @Given("user is on homepage")
     public void user_is_on_homepage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -51,7 +51,7 @@ public class StepDefinition {
 
     }
 
-
+    //Erik Östlind
     @Then("navbar has four links")
     public void navbar_has_four_links() {
         //Get navbar element
@@ -62,6 +62,7 @@ public class StepDefinition {
         int amountOfLinks = navBarLinks.size();
         Assertions.assertEquals(4,amountOfLinks);
     }
+    //Erik Östlind
     @Then("the {int} contains a {string}")
     public void the_contains_a(Integer nthItem, String linkText) {
         //Get navbar element
@@ -76,6 +77,7 @@ public class StepDefinition {
         Assertions.assertEquals(linkText,navBarItemText );
 
     }
+    //Erik Östlind
     @Then("the {int} contain link to {string}")
     public void the_contain_link_to(Integer nthItem, String href) {
         //Get navbar element
@@ -90,6 +92,7 @@ public class StepDefinition {
         Assertions.assertEquals(href,navBarItemHref);
 
     }
+    //Erik Östlind
     @When("user clicks on the {int}")
     public void user_clicks_on_the(Integer nthItem) {
         //Get navbar element
@@ -101,6 +104,7 @@ public class StepDefinition {
         specificNavBarElement.click();
 
     }
+    //Erik Östlind
     @Then("user should get taken to {string}")
     public void user_should_get_taken_to(String href) {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
