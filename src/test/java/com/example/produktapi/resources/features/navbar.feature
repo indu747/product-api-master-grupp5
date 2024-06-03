@@ -1,7 +1,7 @@
 Feature: Navbar
 //Erik Östlind
   Scenario Outline: Navbar contains all items and are clickable on any page
-    Given user is on <starting_page>
+    Given user is on <page>
     Then navbar has four links
     Then the <nth_item> contains a <text>
     And the <nth_item> contain link to <href>
@@ -9,7 +9,7 @@ Feature: Navbar
     Then user should get taken to <href>
 
     Examples:
-      |starting_page  |nth_item |href                                                          |text            |
+      |page           |nth_item |href                                                          |text            |
       |"homepage"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
       |"homepage"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
       |"homepage"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
