@@ -15,21 +15,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
-
+import java.util.Map;
 
 
 public class StepDefinition {
     WebDriver driver;
 
+    private static final Map<String, String> PAGE_URLS = Map.of(
+            "homepage", "https://webshop-agil-testautomatiserare.netlify.app/",
+            "shop_page", "https://webshop-agil-testautomatiserare.netlify.app/products",
+            "checkout_page", "https://webshop-agil-testautomatiserare.netlify.app/checkout"
+    );
+
     @Before
     public void setup(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        //options.addArguments("--no-sandbox"); // Bypass OS security model
-        //options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
-        //options.addArguments("--disable-gpu"); // Applicable to Windows OS
-        //options.addArguments("--remote-debugging-port=9222"); // Remote debugging port
-        //options.setBinary("/usr/bin/google-chrome"); // NEEDED FOR CI/CD? Otherwise remove*/
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
@@ -41,12 +42,16 @@ public class StepDefinition {
         }
     }
     //Erik Östlind
-    @Given("user is on homepage")
-    public void user_is_on_homepage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("header")));
-
+    @Given("user is on {string}")
+    public void user_is_on(String pageName) {
+        String url = PAGE_URLS.get(pageName);
+        if (url != null) {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            driver.get(url);
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("header")));
+        } else {
+            throw new IllegalArgumentException("Unknown page name: " + pageName);
+        }
     }
 
     //Erik Östlind
@@ -100,12 +105,21 @@ public class StepDefinition {
         //Get the nth item
         WebElement specificNavBarElement = navBarLinkList.get(nthItem);
         specificNavBarElement.click();
-
     }
     //Erik Östlind
     @Then("user should get taken to {string}")
     public void user_should_get_taken_to(String href) {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlToBe(href));
+    }
+    //Erik Östlind
+    @Given("user is on Shop Page")
+    public void user_is_on_shop_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
+    }
+    //Erik Östlind
+    @Given("user is on Checkout Page")
+    public void user_is_on_checkout_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 }

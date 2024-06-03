@@ -1,15 +1,24 @@
 Feature: Navbar
 //Erik Östlind
-  Scenario Outline: Navbar contains all items and are clickable on homepage
-    Given user is on homepage
+  Scenario Outline: Navbar contains all items and are clickable on any page
+    Given user is on <starting_page>
     Then navbar has four links
-    Then the <nth Item> contains a <text>
-    And the <nth Item> contain link to <href>
-    When user clicks on the <nth Item>
+    Then the <nth_item> contains a <text>
+    And the <nth_item> contain link to <href>
+    When user clicks on the <nth_item>
     Then user should get taken to <href>
+
     Examples:
-      |nth Item|href|text|
-      |0    |"https://webshop-agil-testautomatiserare.netlify.app/"|"🛍️ The Shop"|
-      |1    |"https://webshop-agil-testautomatiserare.netlify.app/"|"Home"       |
-      |2    |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"|
-      |3    |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"|
+      |starting_page  |nth_item |href                                                          |text            |
+      |"homepage"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
+      |"homepage"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"homepage"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"homepage"     |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
+      |"shop_page"    |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
+      |"shop_page"    |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"shop_page"    |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"shop_page"    |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
+      |"checkout_page"|0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
+      |"checkout_page"|1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"checkout_page"|2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"checkout_page"|3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
