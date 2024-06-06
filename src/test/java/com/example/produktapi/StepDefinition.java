@@ -13,6 +13,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import static org.junit.jupiter.api.Assertions.*;
+
+
+
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +28,10 @@ import java.util.Map;
 
 public class StepDefinition {
     WebDriver driver;
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    private ResponseEntity<String> response;
 
     private static final Map<String, String> PAGE_URLS = Map.of(
             "homepage", "https://webshop-agil-testautomatiserare.netlify.app/",
