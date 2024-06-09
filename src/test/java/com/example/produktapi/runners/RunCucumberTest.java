@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/java/com/example/produktapi/resources/features",
-        glue = "stepDefinitions",
+        glue = {"com.example.produktapi.stepDefinitions", "com.example.produktapi.hooks"},
         plugin = {"pretty", "html:target/cucumber-report.html"},
         monochrome = true)
 public class RunCucumberTest {
