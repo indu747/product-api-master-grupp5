@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class StepDefinition {
+public class navbarStepDefinition {
     WebDriver driver;
 
     private static final Map<String, String> PAGE_URLS = Map.of(
