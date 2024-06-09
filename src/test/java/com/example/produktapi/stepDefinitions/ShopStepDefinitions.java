@@ -31,7 +31,7 @@ public class ShopStepDefinitions {
     @When("user clicks on category {string}")
     public void user_clicks_on_category(String category) {
         //Find the category Link
-        WebElement categoryLink = driver.findElement(By.xpath("//a[normalize-space()='Jewelery']"));
+        WebElement categoryLink = driver.findElement(By.xpath("//a[normalize-space()='"+category+"']"));
         //Click category link
         categoryLink.click();
         //Wait until URL & category is correct
@@ -95,19 +95,16 @@ public class ShopStepDefinitions {
         String actualProductTitle = specificProductCard.findElement(By.className("card-title")).getText();
         Assertions.assertEquals(expectedProductTitle,actualProductTitle);
     }
-    //Erik Östlind
-    @Then("the {int} card should have \"{double} as price")
-    public void the_card_should_have_as_price(Integer nthCard, Double expectedPrice) {
+
+    @Then("the {int} card should have {string} as price")
+    public void the_card_should_have_as_price(Integer nthCard, String expectedPrice) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
         WebElement specificProductCard = productCards.get(nthCard);
 
         //Get price of card and remove everything that is not digit or decimal
         String actualPriceText = specificProductCard.findElement(By.className("fs-5")).getText();
-        String cleanedPrice = actualPriceText.replaceAll("[^\\d.]", "");
         //Assert against the actual price
-        double actualPrice = Double.parseDouble(cleanedPrice);
-        Assertions.assertEquals(expectedPrice,actualPrice);
-
+        Assertions.assertEquals(expectedPrice,actualPriceText);
     }
 
     //Erik Östlind
