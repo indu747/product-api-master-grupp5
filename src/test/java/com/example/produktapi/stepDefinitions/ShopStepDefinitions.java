@@ -1,7 +1,6 @@
 package com.example.produktapi.stepDefinitions;
 
 import com.example.produktapi.hooks.SetupHooks;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,13 +20,14 @@ public class ShopStepDefinitions {
     public ShopStepDefinitions() {
         this.driver = SetupHooks.getDriver();
     }
-
+    //Erik Östlind
     @Given("User is on {string}")
     public void user_is_on(String shopPage) {
         driver.get(shopPage);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
     }
+    //Erik Östlind
     @When("user clicks on category {string}")
     public void user_clicks_on_category(String category) {
         //Find the category Link
@@ -40,7 +40,7 @@ public class ShopStepDefinitions {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
 
     }
-
+    //Erik Östlind
     @Then("{int} products should be displayed")
     public void products_should_be_displayed(Integer expectedAmountOfProducts) {
         //Get all products into a list
@@ -51,7 +51,7 @@ public class ShopStepDefinitions {
         Assertions.assertEquals(expectedAmountOfProducts,amountOfProducts);
 
     }
-
+    //Erik Östlind
     @Then("the {int} card should have {string} as image link")
     public void the_card_should_have_as_image_link(Integer nthCard, String expectedImageLink) {
     List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -63,6 +63,7 @@ public class ShopStepDefinitions {
     Assertions.assertEquals(expectedImageLink,imageLink);
 
     }
+    //Erik Östlind
     @Then("the {int} card should have {string} as alt text")
     public void the_card_should_have_as_alt_text(Integer nthCard, String expectedImgAltText) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -73,7 +74,7 @@ public class ShopStepDefinitions {
         String actualImgAltText = image.getAttribute("alt");
         Assertions.assertEquals(expectedImgAltText,actualImgAltText);
     }
-
+    //Erik Östlind
     @Then("the {int} card should have visible image")
     public void the_card_should_have_visible_image(Integer nthCard) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -84,6 +85,7 @@ public class ShopStepDefinitions {
         boolean imageIsVisible = image.isDisplayed();
         Assertions.assertTrue(imageIsVisible);
     }
+    //Erik Östlind
     @Then("the {int} card should have {string} as title")
     public void the_card_should_have_as_title(Integer nthCard, String expectedProductTitle) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -93,6 +95,7 @@ public class ShopStepDefinitions {
         String actualProductTitle = specificProductCard.findElement(By.className("card-title")).getText();
         Assertions.assertEquals(expectedProductTitle,actualProductTitle);
     }
+    //Erik Östlind
     @Then("the {int} card should have \"{double} as price")
     public void the_card_should_have_as_price(Integer nthCard, Double expectedPrice) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -106,10 +109,8 @@ public class ShopStepDefinitions {
         Assertions.assertEquals(expectedPrice,actualPrice);
 
     }
-    @Then("the {int} card should have {string} as price")
-    public void the_card_should_have_as_price(Integer nthCard, String expectedPrice) {
 
-    }
+    //Erik Östlind
     @Then("the {int} card should have {string} as description")
     public void the_card_should_have_as_description(Integer nthCard, String expectedDescription) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
@@ -117,7 +118,9 @@ public class ShopStepDefinitions {
 
         //Get description of card and assert againt expected description
         String actualDescription = specificProductCard.findElement(By.className("card-text")).getText();
+        Assertions.assertEquals(expectedDescription,actualDescription);
     }
+    //Erik Östlind
     @Then("the {int} card should have a checkout button")
     public void the_card_should_have_a_checkout_button(Integer nthCard) {
         //Get the nth card from displayed cards
@@ -129,6 +132,7 @@ public class ShopStepDefinitions {
         Assertions.assertNotNull(addToCartButton);
         Assertions.assertTrue(addToCartButton.isDisplayed(), "Checkout button is not visible in the specified card");
     }
+    //Erik Östlind
     @Then("the {int} card checkout button should have text {string}")
     public void the_card_checkout_button_should_have_text(Integer nthCard, String expectedButtonText) {
         List <WebElement> productCards = driver.findElements(By.className("card"));
