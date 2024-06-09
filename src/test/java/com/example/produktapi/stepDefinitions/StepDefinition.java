@@ -1,4 +1,4 @@
-package com.example.produktapi;
+package com.example.produktapi.stepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
