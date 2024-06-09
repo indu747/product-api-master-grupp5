@@ -1,5 +1,5 @@
 Feature: Navbar
-  //Erik Östlind
+  #Erik Östlind
   Scenario Outline: Navbar contains all items and are clickable on any page
     Given user is on <page>
     Then navbar has four links

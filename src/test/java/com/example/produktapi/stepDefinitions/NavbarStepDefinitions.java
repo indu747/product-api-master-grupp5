@@ -1,5 +1,6 @@
-package com.example.produktapi;
+package com.example.produktapi.stepDefinitions;
 
+import com.example.produktapi.hooks.SetupHooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -18,8 +19,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class StepDefinition {
-    WebDriver driver;
+public class NavbarStepDefinitions {
+    private WebDriver driver;
+
+    public NavbarStepDefinitions() {
+        this.driver = SetupHooks.getDriver();
+    }
 
     private static final Map<String, String> PAGE_URLS = Map.of(
             "homepage", "https://webshop-agil-testautomatiserare.netlify.app/",
@@ -27,20 +32,7 @@ public class StepDefinition {
             "checkout_page", "https://webshop-agil-testautomatiserare.netlify.app/checkout"
     );
 
-    @Before
-    public void setup(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-    }
 
-    @After
-    public void closeDriver(){
-        if (driver != null){
-            driver.quit();
-        }
-    }
     //Erik Östlind
     @Given("user is on {string}")
     public void user_is_on(String pageName) {
