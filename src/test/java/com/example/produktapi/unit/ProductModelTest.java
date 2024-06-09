@@ -76,4 +76,43 @@ public class ProductModelTest {
         product.setPrice(40.0);
         Assertions.assertEquals(40.0, product.getPrice(), "Price should be '40.0'");
     }
+
+
+
+
+
+    //Patricia
+    @Test
+    @DisplayName("getDescription Test")
+    public void getDescriptionTest () {
+        Product product = new Product("Cutest Dog", 99.0, "Dog Cathegory", "Cutest Dog In The World", "Picture");
+        Assertions.assertEquals("Cutest Dog In The World", product.getDescription());
+    }
+
+    //Patricis
+    @Test
+    @DisplayName("setDescriptionTest")
+    public void setDescriptionTest () {
+        Product product = new Product("Cutest Cat", 59.0, "Cat Cathegory", "Cutest Cat In The World", "Picture");
+        product.setDescription("Cutest Cat In The World");
+        Assertions.assertEquals("Cutest Cat In The World", product.getDescription());
+    }
+
+    //Patricia
+    @Test
+    @DisplayName("setImageTest")
+    public void setImageTest (){
+        Product product = new Product ("CatDogs", 19.0, "CatDogs Cathehory", "Cutest CatDogs In The World", "CatDog");
+        product.setImage("CatDog");
+        Assertions.assertEquals("CatDog", product.getImage());
+    }
+
+    //Patricia
+    @Test
+    @DisplayName("getImageTest")
+    public void getImageTest (){
+        Product product = new Product ("Test product", 45.0, "Test Cathegory", "Best product","CatDog");
+        Assertions.assertEquals("CatDog", product.getImage());
+    }
+
 }
