@@ -1,10 +1,20 @@
 package com.example.produktapi.stepDefinitions;
 
+import com.example.produktapi.hooks.SetupHooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 
-public class ShopStepDefinition {
+public class ShopStepDefinitions {
+
+    private WebDriver driver;
+
+    // Constructor name should match the class name
+    public ShopStepDefinitions() {
+        this.driver = SetupHooks.getDriver();
+    }
+
     @Given("User is on {string}")
     public void user_is_on(String string) {
         // Write code here that turns the phrase above into concrete actions
