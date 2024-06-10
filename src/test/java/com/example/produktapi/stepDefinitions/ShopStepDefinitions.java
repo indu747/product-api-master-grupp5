@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -140,5 +141,26 @@ public class ShopStepDefinitions {
         Assertions.assertEquals(expectedButtonText,actualButtonText);
     }
 
+    //Patricia
+
+    @Given("the user is on the homepage")
+    public void the_user_is_on_the_homepage() {
+        driver = new ChromeDriver();
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
+    }
+    @Then("the title of the product should be {string}")
+    public void the_title_of_the_product_should_be(String expectedTitle) {
+       String actualTitle = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[1]")).getText();
+    Assertions.assertEquals(expectedTitle,actualTitle);
+    }
+
+
+    @Then("the price should be {string}")
+    public void the_price_should_be(String expectedPrice) {
+        String actualPrice = driver.findElement(By.xpath("//strong[text()='$ 109.95']")).getText();
+        Assertions.assertEquals(expectedPrice, actualPrice);
+
+
+    }
 
 }

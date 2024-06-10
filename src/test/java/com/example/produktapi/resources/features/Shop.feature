@@ -18,3 +18,12 @@ Feature: Shop
   | 1    |"https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"|"SolGold Petite Micropave"                                                    |"$ 168"  |"Denna blir man glad av."                                |
   | 2    |"https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"|"White Gold Plated Princess"                                                  |"$ 9.99" |"Prinsessans bästa vän. Köp för att få den i din ägo"    |
   | 3    |"https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"|"Pierced Owl Rose Gold Plated Stainless Steel Double"                         |"$ 10.99"|"Något med en uggla, och i guld och lite dubbel stål"    |
+
+  Scenario: Mens Clothing - Fjallraven
+   Given the user is on the homepage
+   Then the title of the product should be "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+
+   Scenario: Mens Clothing - Fjallraven pris
+    Given the user is on the homepage
+    Then the price should be "$ 109.95"
+
