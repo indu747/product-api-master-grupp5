@@ -1,6 +1,5 @@
-package com.example.produktapi.unit;
+package com.example.produktapi;
 
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import io.cucumber.java.en.When;
