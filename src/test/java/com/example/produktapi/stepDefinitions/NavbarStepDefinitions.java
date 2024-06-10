@@ -114,4 +114,12 @@ public class NavbarStepDefinitions {
     public void user_is_on_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
+
+    @When("user clicks on {string}")
+    public void user_clicks_on(String menuItem) {
+        WebElement navbar = driver.findElement(By.tagName("header"));
+        WebElement navbarItem = navbar.findElement(By.xpath("//a[normalize-space()='"+menuItem+ "']"));
+        navbarItem.click();
+
+    }
 }

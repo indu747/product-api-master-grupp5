@@ -21,3 +21,25 @@ Feature: Navbar
       |"checkout_page"|1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
       |"checkout_page"|2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
       |"checkout_page"|3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
+  #Erik Östlind
+  Scenario:User clicks on Logo
+    Given user is on "homepage"
+    When user clicks on "🛍️ The Shop"
+    Then user should get taken to "https://webshop-agil-testautomatiserare.netlify.app/"
+  #Erik Östlind
+  Scenario: User clicks on Home
+    Given user is on "homepage"
+    When user clicks on "Home"
+    Then user should get taken to "https://webshop-agil-testautomatiserare.netlify.app/"
+  #Erik Östlind
+  Scenario: User clicks on Shop
+    Given user is on "homepage"
+    When user clicks on "Shop"
+    Then user should get taken to "https://webshop-agil-testautomatiserare.netlify.app/products"
+  #Erik Östlind
+  Scenario: User clicks on Checkout
+    Given user is on "homepage"
+    When user clicks on "🛒 Checkout"
+    Then user should get taken to "https://webshop-agil-testautomatiserare.netlify.app/checkout"
+
+
