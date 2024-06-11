@@ -109,12 +109,10 @@ public class OmarStepDefinitions {
         driver.findElement(By.xpath("//*[@id=\"cartList\"]/li[1]/div/button")).click();
     }
     // Omar
-    @Then("the product is deleted {string} and should not be displayed")
-    public void the_product_is_deleted_and_should_not_be_displayed(String expectNotToBeShownProductSanDisk) throws InterruptedException {
-        String actualNotToBeShownProductSanDisk = driver.findElement(By.xpath("//*[@id=\"cartList\"]/li[1]/div/h6")).getText();
-        Assertions.assertNotEquals(expectNotToBeShownProductSanDisk, actualNotToBeShownProductSanDisk);
-
-
+    @Then("the product {string} should not be visited")
+    public void the_product_should_not_be_visited(String expectNotToBeVisitedProductSanDisk) {
+        String actualNotToBeVisitedProductSanDisk = driver.findElement(By.xpath("/html/body/main/div[2]/div[1]")).getText();
+        Assertions.assertNotEquals(expectNotToBeVisitedProductSanDisk, actualNotToBeVisitedProductSanDisk);
     }
     // Omar
     @Then("shows zero product on checkout {string}")

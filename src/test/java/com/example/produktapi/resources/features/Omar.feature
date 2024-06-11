@@ -30,7 +30,7 @@ Feature: The shop
     And the product name is "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"
     And the cart size is shown "1"
     When user click on delete button
-    #Then the product is deleted "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s" and should not be displayed
-    Then the cart size is shown "0"
+    Then the product "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s" should not be visited
+    And the cart size is shown "0"
     And the product total price is zero "$0.00"
     And shows zero product on checkout "0"
