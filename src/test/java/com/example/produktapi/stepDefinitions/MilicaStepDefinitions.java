@@ -41,11 +41,4 @@ public class MilicaStepDefinitions {
         searchResult = wait.until(driver -> driver.findElement(By.xpath("//h3[contains(text(),'" + expectedProduct + "')]"))); // Adjust the XPath to match your product display method
         Assertions.assertTrue(searchResult.isDisplayed());
     }
-
-    @After
-    public void closeDriver(){
-        if (driver != null){
-            driver.quit();
-        }
-    }
 }
