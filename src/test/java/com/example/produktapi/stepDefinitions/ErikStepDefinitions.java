@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -273,6 +274,33 @@ public class ErikStepDefinitions {
         Assertions.assertEquals(expectedButtonText,actualButtonText);
     }
 
-    //CHECKOUT STEPS
+    @When("user searches for {string}")
+    public void user_searches_for(String title) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("card")));
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.sendKeys(title);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("card")));
 
+    }
+
+    @Then("only cards containing {string} should be visible")
+    public void only_cards_containing_should_be_visible(String expectedTitle) {
+        // Adjust locator as needed
+
+        List <WebElement> cards = driver.findElements(By.className("card"));
+        List<String> cardTitles = new ArrayList<>();
+
+        for (WebElement card : cards) {
+            List<WebElement> titles = card.findElements(By.className("card-title"));
+            for (WebElement cardTitle : titles) {
+                cardTitles.add(cardTitle.getText().toLowerCase());
+            }
+        }
+        for (String cardTitle:cardTitles){
+            Assertions.assertTrue(cardTitle.contains(expectedTitle));
+        }
+
+
+    }
 }
