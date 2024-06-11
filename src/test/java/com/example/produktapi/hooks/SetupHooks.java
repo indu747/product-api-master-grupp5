@@ -12,17 +12,17 @@ public class SetupHooks {
     @Before
     public void setup(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
-    @After
+    /*@After
     public void closeDriver(){
         if (driver != null){
             driver.quit();
         }
-    }
+    }*/
     public static WebDriver getDriver() {
         return driver;
     }
