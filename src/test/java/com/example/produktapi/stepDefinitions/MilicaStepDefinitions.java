@@ -1,5 +1,6 @@
 package com.example.produktapi.stepDefinitions;
 
+import com.example.produktapi.hooks.SetupHooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,6 +17,10 @@ import java.time.Duration;
 public class MilicaStepDefinitions {
     private WebDriver driver;
     private WebElement searchResult;
+
+    public MilicaStepDefinitions() {
+        this.driver = SetupHooks.getDriver();
+    }
 
     @Given("User is on the product page")
     public void user_is_on_the_product_page() {
