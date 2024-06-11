@@ -18,3 +18,19 @@ Feature: The shop
     And the product price is "$109"
     And the product Total (USD) is "Total (USD)"
     And the product total price is "$109.00"
+
+    # Omar
+  Scenario: Add a product and delete it from checkout and works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user click on Electronics
+    And user click a SanDisk SSD product for add to cart
+    Then shows one product on checkout "1"
+    When user click on checkout button
+    Then user get on checkout page have text "Checkout form"
+    And the product name is "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s"
+    And the cart size is shown "1"
+    When user click on delete button
+    #Then the product is deleted "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s" and should not be displayed
+    Then the cart size is shown "0"
+    And the product total price is zero "$0.00"
+    And shows zero product on checkout "0"

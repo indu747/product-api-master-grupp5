@@ -90,10 +90,43 @@ public class OmarStepDefinitions {
         // Assertions on the text name is Total (USD)
         Assertions.assertEquals(expectedProductTotalUsdText, actualProductTotalUsdText);
     }
+    // Omar
     @Then("the product total price is {string}")
     public void the_product_total_price_is(String expectedProductSanDiskTotalPrice) {
         String actualProductSanDiskTotalPrice = driver.findElement(By.xpath("//strong[normalize-space()='$109.00']")).getText();
         // Assertions of the total price of product is $109.00
         Assertions.assertEquals(expectedProductSanDiskTotalPrice, actualProductSanDiskTotalPrice);
+    }
+    // Omar
+    @Then("the cart size is shown {string}")
+    public void the_cart_size_is_shown(String expectedCartSizeShown1) {
+        String actualCartSizeShown1 = driver.findElement(By.id("cartSize")).getText();
+        Assertions.assertEquals(expectedCartSizeShown1, actualCartSizeShown1);
+    }
+    // Omar
+    @When("user click on delete button")
+    public void user_click_on_delete_button() {
+        driver.findElement(By.xpath("//*[@id=\"cartList\"]/li[1]/div/button")).click();
+    }
+    // Omar
+    @Then("the product is deleted {string} and should not be displayed")
+    public void the_product_is_deleted_and_should_not_be_displayed(String expectNotToBeShownProductSanDisk) throws InterruptedException {
+        String actualNotToBeShownProductSanDisk = driver.findElement(By.xpath("//*[@id=\"cartList\"]/li[1]/div/h6")).getText();
+        Assertions.assertNotEquals(expectNotToBeShownProductSanDisk, actualNotToBeShownProductSanDisk);
+
+
+    }
+    // Omar
+    @Then("shows zero product on checkout {string}")
+    public void shows_zero_product_on_checkout(String expectedCartSizeShown0) {
+        String actualCartSizeShown0 = driver.findElement(By.id("cartSize")).getText();
+        Assertions.assertEquals(expectedCartSizeShown0, actualCartSizeShown0);
+    }
+    // Omar
+    @Then("the product total price is zero {string}")
+    public void the_product_total_price_is_zero(String expectedProductSanDiskTotalPriceZero) {
+        String actualProductSanDiskTotalPriceZero = driver.findElement(By.xpath("//strong[normalize-space()='$0.00']")).getText();
+        // Assertions of the total price of product is $0.00
+        Assertions.assertEquals(expectedProductSanDiskTotalPriceZero, actualProductSanDiskTotalPriceZero);
     }
 }
