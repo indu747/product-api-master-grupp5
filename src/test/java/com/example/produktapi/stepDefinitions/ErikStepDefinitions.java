@@ -29,7 +29,48 @@ public class ErikStepDefinitions {
             "about_page", "https://webshop-agil-testautomatiserare.netlify.app/about"
     );
 
+    //HOMEPAGE STEPS
+    @Then("h2 is set to {string}")
+    public void h2_is_set_to(String expectedH2) {
+       WebElement homePageContainer =driver.findElement(By.className("my-5"));
+       Assertions.assertEquals(expectedH2,homePageContainer.findElement(By.tagName("h2")).getText());
+    }
+    @Then("lead is set to {string}")
+    public void lead_is_set_to(String expectedLead) {
+        WebElement homePageContainer =driver.findElement(By.className("my-5"));
+        Assertions.assertEquals(expectedLead,homePageContainer.findElement(By.tagName("p")).getText());
+    }
+    @Then("{string} button exist with correct text")
+    public void button_exist(String expectedButtonText) {
+        WebElement homePageContainer =driver.findElement(By.className("my-5"));
+        Assertions.assertEquals(expectedButtonText,homePageContainer.findElement(By.tagName("button")).getText());
 
+    }
+    @Then("Image is displayed")
+    public void image_is_displayed() {
+        WebElement homePageContainer =driver.findElement(By.className("my-5"));
+        boolean isImageDisplayed = homePageContainer.findElement(By.tagName("img")).isDisplayed();
+        Assertions.assertTrue(isImageDisplayed);
+    }
+
+    @When("user clicks on {string} - button")
+    public void user_clicks_on_button(String string) {
+        WebElement homePageContainer =driver.findElement(By.className("my-5"));
+        homePageContainer.findElement(By.tagName("button")).click();
+    }
+
+    @Then("user should get taken to Shop page")
+    public void user_should_get_taken_to_shop_page() {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://webshop-agil-testautomatiserare.netlify.app/products.html"));
+    }
+
+    @Then("product cards should be displayed")
+    public void product_cards_should_be_displayed() {
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
+    }
+    //NAVBAR STEPS
     //Erik Östlind
     @Given("user is on {string}")
     public void user_is_on(String pageName) {
@@ -118,6 +159,7 @@ public class ErikStepDefinitions {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
     }
+    //SHOP STEPS
     //Erik Östlind
     @When("user clicks on category {string}")
     public void user_clicks_on_category(String category) {
@@ -230,4 +272,7 @@ public class ErikStepDefinitions {
         //Assert button text against expected text
         Assertions.assertEquals(expectedButtonText,actualButtonText);
     }
+
+    //CHECKOUT STEPS
+
 }
