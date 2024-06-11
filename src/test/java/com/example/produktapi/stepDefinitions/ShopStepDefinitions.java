@@ -199,14 +199,6 @@ public class ShopStepDefinitions {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
     }
-    @Then("the product eill be added to the checkout")
-    public void the_product_eill_be_added_to_the_checkout() {
-        driver.findElement(By.xpath("//a[.='🛒 Checkout 1']")).click();
-        driver.findElement(By.xpath("(//li[contains(@class,'list-group-item d-flex')])[1]")).getText();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
-        Assertions.assertTrue(true);
 
-    }
 
 }

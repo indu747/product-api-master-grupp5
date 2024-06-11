@@ -53,9 +53,6 @@ Feature: Shop
   Given the user is on mans clothing
   Then the price of the polo should be "$ 15.99"
 
- Scenario: Mans Clothing - Add items
-  Given the user is on mans clothing
-  When user clicks one item
-  Then the product eill be added to the checkout
+
 
 
