@@ -34,20 +34,20 @@ public class OmarStepDefinitions {
         driver.findElement(By.xpath("/html/body/div[1]/div/ul/li[5]/a")).click();
     }
     // Omar
-    @Then("have a catergory-text {string}")
-    public void have_a_catergory_text(String expectedWD) throws InterruptedException {
+    @Then("have a category-text {string}")
+    public void have_a_category_text(String expectedWD) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main\"]/div[1]/div/div/h3")));
         String actualElectronicsProductText = driver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/div/div/h3")).getText();
-        // Assertions the electronic SanDisk product
+        // Assertions the electronic WD product
         Assertions.assertEquals(expectedWD, actualElectronicsProductText);
     }
     // Omar
-    @When("added to cart a product SanDisk SSD")
-    public void added_to_cart_a_product_san_disk_ssd() {
+    @When("user click a SanDisk SSD product for add to cart")
+    public void user_click_a_san_disk_ssd_product_for_add_to_cart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main\"]/div[2]/div/div/button")));
-        // Added a product SanDisk
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card")));
+        // Click for added a product SanDisk
         driver.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div/button")).click();
     }
     // Omar

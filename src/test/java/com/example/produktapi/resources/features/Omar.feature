@@ -4,13 +4,13 @@ Feature: The shop
   Scenario: Electronics should show and works correctly
     Given user visits webshop-agil-testautomatiserare.netlify.app/products
     When user click on Electronics
-    Then have a catergory-text "WD 2TB Elements Portable External Hard Drive - USB 3.0"
+    Then have a category-text "WD 2TB Elements Portable External Hard Drive - USB 3.0"
 
     # Omar
   Scenario: Checkout, the items added and works correctly
     Given user visits webshop-agil-testautomatiserare.netlify.app/products
     When user click on Electronics
-    And added to cart a product SanDisk SSD
+    And user click a SanDisk SSD product for add to cart
     Then shows one product on checkout "1"
     When user click on checkout button
     Then user get on checkout page have text "Checkout form"
