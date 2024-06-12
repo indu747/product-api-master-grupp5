@@ -1,6 +1,7 @@
 package com.example.produktapi.stepDefinitions;
 
 import com.example.produktapi.hooks.SetupHooks;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -101,6 +102,7 @@ public class OmarStepDefinitions {
     @Then("the cart size is shown {string}")
     public void the_cart_size_is_shown(String expectedCartSizeShown1) {
         String actualCartSizeShown1 = driver.findElement(By.id("cartSize")).getText();
+        // Assertions for the cart size 1 shows
         Assertions.assertEquals(expectedCartSizeShown1, actualCartSizeShown1);
     }
     // Omar
@@ -112,12 +114,14 @@ public class OmarStepDefinitions {
     @Then("the product {string} should not be visited")
     public void the_product_should_not_be_visited(String expectNotToBeVisitedProductSanDisk) {
         String actualNotToBeVisitedProductSanDisk = driver.findElement(By.xpath("/html/body/main/div[2]/div[1]")).getText();
+        // Assertions for the product "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s" should not be visited after deleted it
         Assertions.assertNotEquals(expectNotToBeVisitedProductSanDisk, actualNotToBeVisitedProductSanDisk);
     }
     // Omar
     @Then("shows zero product on checkout {string}")
     public void shows_zero_product_on_checkout(String expectedCartSizeShown0) {
         String actualCartSizeShown0 = driver.findElement(By.id("cartSize")).getText();
+        // Assertions for no product should shows in checkout after delete the product
         Assertions.assertEquals(expectedCartSizeShown0, actualCartSizeShown0);
     }
     // Omar
@@ -126,5 +130,27 @@ public class OmarStepDefinitions {
         String actualProductSanDiskTotalPriceZero = driver.findElement(By.xpath("//strong[normalize-space()='$0.00']")).getText();
         // Assertions of the total price of product is $0.00
         Assertions.assertEquals(expectedProductSanDiskTotalPriceZero, actualProductSanDiskTotalPriceZero);
+    }
+    // Omar
+    @When("user type Pierced in the search field")
+    public void user_type_pierced_in_the_search_field() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div/div/h3")));
+        // Type "Pierced" in a search field in all categories
+        driver.findElement(By.id("search")).sendKeys("Pierced");
+    }
+    // Omar
+    @Then("the product {string} should be visited")
+    public void the_product_should_be_visited(String expectedProductPiercedShouldBeVisited) {
+        String actualProductPiercedShouldBeVisited = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div/div/h3")).getText();
+        // Assertions the Product "Pierced Owl Rose Gold Plated Stainless Steel Double" should be visited after typing "Pierced" in a search field
+        Assertions.assertEquals(expectedProductPiercedShouldBeVisited, actualProductPiercedShouldBeVisited);
+    }
+    // Omar
+    @Then("the product, item {string} should not be visited")
+    public void the_product_item_should_not_be_visited(String expectNotToBeVisitedProductMensCausal) {
+        String actualProductMensCausalShouldNotBeVisited = driver.findElement(By.className("col")).getText();
+        // Assertions the product "Mens Casual Premium Slim Fit T-Shirts" should not be visited after typing "Pierced" in the search field
+        Assertions.assertNotEquals(expectNotToBeVisitedProductMensCausal, actualProductMensCausalShouldNotBeVisited);
     }
 }

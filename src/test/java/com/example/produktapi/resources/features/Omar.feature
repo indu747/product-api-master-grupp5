@@ -34,3 +34,10 @@ Feature: The shop
     And the cart size is shown "0"
     And the product total price is zero "$0.00"
     And shows zero product on checkout "0"
+
+    # Omar
+  Scenario: Search a item and it works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user type Pierced in the search field
+    Then the product "Pierced Owl Rose Gold Plated Stainless Steel Double" should be visited
+    And the product, item "Mens Casual Premium Slim Fit T-Shirts" should not be visited
