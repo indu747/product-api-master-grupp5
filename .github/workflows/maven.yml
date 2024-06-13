@@ -32,4 +32,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Upload Test Reports
+      if: failure()  # Only uploads if previous steps failed
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-reports
+        path: target/surefire-reports
+
 
