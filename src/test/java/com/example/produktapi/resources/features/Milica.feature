@@ -1,4 +1,4 @@
-Feature: Search Functionality on Webshop (Milica)
+Feature: Search functionality on web shop
 
   Scenario: Searching for a specific product type
     Given User is on the product page
