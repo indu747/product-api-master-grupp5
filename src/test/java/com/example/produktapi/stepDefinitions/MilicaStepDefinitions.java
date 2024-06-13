@@ -6,17 +6,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.After;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
 
 import java.time.Duration;
 
 public class MilicaStepDefinitions {
     private WebDriver driver;
-    private WebElement searchResult;
 
     public MilicaStepDefinitions() {
         this.driver = SetupHooks.getDriver();
@@ -38,7 +37,7 @@ public class MilicaStepDefinitions {
     @Then("{string} should be displayed")
     public void should_be_displayed(String expectedProduct) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        searchResult = wait.until(driver -> driver.findElement(By.xpath("//h3[contains(text(),'" + expectedProduct + "')]"))); // Adjust the XPath to match your product display method
+        WebElement searchResult = wait.until(driver -> driver.findElement(By.xpath("//h3[contains(text(),'" + expectedProduct + "')]"))); // Adjust the XPath to match your product display method
         Assertions.assertTrue(searchResult.isDisplayed());
     }
 }
