@@ -3,8 +3,10 @@ package com.example.produktapi.stepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -87,6 +89,26 @@ public class PatriciaStepDefinitions {
         String actualDescription = driver.findElement(By.xpath("//p[text()='Mer casual än såhär blir det inte!']")).getText();
         Assertions.assertEquals(expectedDescription, actualDescription);
     }
+
+    @Given("the user is on the homepage")
+    public void the_user_is_on_the_homepage() {
+        driver = new ChromeDriver();
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+
+    }
+    @When("user use it with mobilesize")
+    public void user_use_it_with_mobilesize() {
+        Dimension newSize = new Dimension(550, 900);
+        driver.manage().window().setSize(newSize);
+
+    }
+    @Then("user should be able to click on {string} in the middle of the page")
+    public void user_should_be_able_to_click_on_in_the_middle_of_the_page(String expected) {
+    String actual = driver.findElement(By.tagName("button")).getText();
+     driver.findElement(By.tagName("button")).click();
+    Assertions.assertEquals(expected, actual);
+    }
+
 
 
 

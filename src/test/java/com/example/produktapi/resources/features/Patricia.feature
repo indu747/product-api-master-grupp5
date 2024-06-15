@@ -49,5 +49,9 @@ Feature: Patricia
       Given the user is on mans clothing
       Then the desription Polo shpuld be "Mer casual än såhär blir det inte!"
 
+    Scenario: User should be able to use the homepage in mobilesize
+      Given the user is on the homepage
+      When user use it with mobilesize
+      Then user should be able to click on "All products" in the middle of the page
 
 
