@@ -1,5 +1,6 @@
 package com.example.produktapi.stepDefinitions;
 
+import com.example.produktapi.hooks.SetupHooks;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +19,7 @@ import java.time.Duration;
 import static com.example.produktapi.hooks.SetupHooks.driver;
 
 public class PatriciaStepDefinitions {
+    public PatriciaStepDefinitions() {this.driver = SetupHooks.getDriver();}
 
     private WebDriver driver;
 
@@ -109,18 +112,80 @@ public class PatriciaStepDefinitions {
     Assertions.assertEquals(expected, actual);
     }
 
+    @Then("heading should be {string}")
+    public void heading_should_be(String expectedFjallraven) {
+    String actualFjallraven = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[1]")).getText();
+    Assertions.assertEquals(expectedFjallraven, actualFjallraven);
+
+    }
+    @Then("Tshirt {string}")
+    public void tshirt(String expectedTshirt) {
+    String actualTshirt = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[2]")).getText();
+    Assertions.assertEquals(expectedTshirt, actualTshirt);
+
+    }
+    @Then("Jacket {string}")
+    public void jacket(String expectedJacket) {
+    String actualJacket = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[3]")).getText();
+    Assertions.assertEquals(actualJacket, expectedJacket);
+
+    }
+    @Then("Slim fit {string}")
+    public void slim_fit(String expectedSlimFit) {
+    String actualSlimFit = driver.findElement(By.xpath("//h3[text()='Mens Casual Slim Fit']")).getText();
+
+    Assertions.assertEquals(expectedSlimFit, actualSlimFit);
+    }
+
+    @When("user clicks on All")
+    public void user_clicks_on_all() {
+        driver.findElement(By.xpath("//a[contains(text(),'All')]")).click();
+    }
+    @Then("all products will shown")
+    public void all_products_will_shown() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
+    Assertions.assertTrue(true);
+    }
+
+    @When("user clicks Jewelery")
+    public void user_clicks_jewelery() {
+        driver.findElement(By.xpath("//a[contains(text(),'Jewelery')]")).click();
+
+    }
+    @Then("Jewelery will shown")
+    public void jewelery_will_shown() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
+         Assertions.assertTrue(true);
+    }
+    @When("user clicks on electronics")
+    public void user_clicks_on_electronics() {
+        driver.findElement(By.xpath("//a[contains(text(),'Electronics')]")).click();
+
+    }
+    @Then("electronics will shown")
+    public void electronics_will_shown() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
+    Assertions.assertTrue(true);
+    }
+    @Then("the text should be {string}")
+    public void the_text_should_be(String expectedText) {
+       String actualText = driver.findElement(By.xpath("//p[text()[normalize-space()='Welcome to The Shop, your premier online destination for all things fashion, electronics, and jewelry! At The Shop, we pride ourselves on offering a curated selection of high-quality products to cater to your diverse needs and desires.']]")).getText();
+    Assertions.assertEquals(expectedText, actualText);
+    }
+    @Then("the text should be this {string}")
+    public void the_text_should_be_this(String expectedText) {
+    String actualText =  driver.findElement(By.tagName("h2")).getText();
+    Assertions.assertEquals( expectedText, actualText);
+    }
 
 
 
 
 
-    @After
-    public void closeDriver(){
-        if (driver != null){
-            driver.quit();
-        }
 
-}
+
+
+
 
 
 }

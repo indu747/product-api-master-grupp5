@@ -54,4 +54,38 @@ Feature: Patricia
       When user use it with mobilesize
       Then user should be able to click on "All products" in the middle of the page
 
+    Scenario: Verify headings are visible - Mens clothing
+      Given the user is on mans clothing
+      Then heading should be "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+      And Tshirt "Mens Casual Premium Slim Fit T-Shirts"
+      And Jacket "Mens Cotton Jacket"
+      And Slim fit "Mens Casual Slim Fit"
+
+    Scenario: Verify heading are clickable - Mens
+      Given the user is on mans clothing
+      When user clicks on All
+      Then all products will shown
+
+    Scenario: Verify heading are clickable - Jelewery
+      Given the user is on mans clothing
+      When user clicks Jewelery
+      Then Jewelery will shown
+
+      Scenario: Verify heading are clickable - electronics
+        Given the user is on mans clothing
+        When user clicks on electronics
+        Then electronics will shown
+
+      Scenario: Verify the text on the homepage 1
+        Given the user is on the homepage
+        Then the text should be "Welcome to The Shop, your premier online destination for all things fashion, electronics, and jewelry! At The Shop, we pride ourselves on offering a curated selection of high-quality products to cater to your diverse needs and desires."
+
+      Scenario: Verify the text on the homepage 2
+        Given the user is on the homepage
+        Then the text should be this "This shop is all you need"
+
+
+
+
+
 
