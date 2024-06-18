@@ -12,7 +12,7 @@ public class SetupHooks {
     @Before
     public void setup(){
         ChromeOptions options = new ChromeOptions();
-      //  options.addArguments("--headless", "--window-size=1920,1080");
+        options.addArguments("--headless", "--window-size=1920,1080");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
