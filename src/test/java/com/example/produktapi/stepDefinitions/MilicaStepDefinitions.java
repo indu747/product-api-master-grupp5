@@ -23,7 +23,6 @@ public class MilicaStepDefinitions {
 
     @Given("User is on the product page")
     public void user_is_on_the_product_page() {
-        driver = new ChromeDriver();
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
