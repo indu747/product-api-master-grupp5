@@ -238,3 +238,4 @@ public class OmarStepDefinitions {
         Assertions.assertEquals(expectedProductWhiteGoldShouldBeVisited, actualProductWhiteGoldShouldBeVisited);
     }
 }
+
