@@ -5,9 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -303,4 +301,124 @@ public class ErikStepDefinitions {
 
 
     }
+    @When("add a product with title {string} to cart")
+    public void add_a_product_with_title_to_checkout(String desiredCardTitle) {
+        List <WebElement> allCards = driver.findElements(By.className("card"));
+        WebElement desiredCard = null;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        for (WebElement card : allCards) {
+                // Find the card-title element within the current card
+                WebElement cardTitle = card.findElement(By.className("card-title"));
+                // Check if the card-title text is "X"
+                if (cardTitle.getText().equals(desiredCardTitle)) {
+                    desiredCard = card;
+                    break;
+                }
+        }
+
+        WebElement desiredCheckoutButton = desiredCard.findElement(By.tagName("button"));
+
+        //Scroll down to card´s checkout button
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", desiredCheckoutButton);
+        wait.until(ExpectedConditions.visibilityOf(desiredCheckoutButton));
+        //Add some extra scroll
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 100);");
+        //Wait for card to be clickable
+        wait.until(ExpectedConditions.elementToBeClickable(desiredCheckoutButton));
+        //Click it
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredCheckoutButton);
+
+    }
+    @Then("the checkout button should have {int} in it")
+    public void the_checkout_button_should_have_in_it(Integer expectedAmoundOfGroceries) {
+        WebElement checkOutButton = driver.findElement(By.className("btn-warning"));
+        WebElement checkOutSpan =  checkOutButton.findElement(By.tagName("span"));
+        String checkOutSpanText = checkOutSpan.getText();
+        Assertions.assertEquals(expectedAmoundOfGroceries.toString(),checkOutSpanText);
+
+    }
+    @When("user clicks the checkout button")
+    public void user_clicks_the_checkout_button() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement checkOutButton = driver.findElement(By.className("btn-warning"));
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+        wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkOutButton);
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cartList")));
+
+    }
+    @Then("the user can see selected product {string} in cart")
+    public void the_user_can_see_selected_product_in_cart(String expectedProductTitle) {
+        WebElement cartList = driver.findElement(By.id("cartList"));
+        String actualProductTitle =cartList.findElement(By.tagName("h6")).getText();
+
+        Assertions.assertEquals(expectedProductTitle.replaceAll("'",""),actualProductTitle);
+
+
+    }
+    @Then("the product should have correct {string} in cartlist")
+    public void the_product_should_have_correct_in_cartlist(String expectedCategoryName) {
+        WebElement cartList = driver.findElement(By.id("cartList"));
+        String actualCategoryName = cartList.findElement(By.tagName("small")).getText();
+
+        Assertions.assertEquals(expectedCategoryName.toLowerCase(),actualCategoryName.toLowerCase());
+    }
+    @Then("the total price is {double}")
+    public void the_total_price_is(double expectedTotalPrice) {
+        WebElement cartList = driver.findElement(By.id("cartList"));
+        double actualTotalPrice = Double.parseDouble(cartList.findElement(By.tagName("strong")).getText().replaceAll("\\$",""));
+        Assertions.assertEquals(expectedTotalPrice,actualTotalPrice);
+    }
+    @When("user enter nothing into {string} field and press enter")
+    public void user_enter_nothing_into_field_and_press_enter(String locatorID) {
+
+        WebElement inputField = driver.findElement(By.id(locatorID));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", inputField);
+        //Click on the field
+        inputField.click();
+        inputField.sendKeys(Keys.ENTER);
+
+    }
+    @Then("on the {int} field should have {string} as label")
+    public void on_the_field_should_have_as_label(Integer nthLabel, String expectedLabelText) {
+        List <WebElement> inputFieldLabels = driver.findElements(By.tagName("label"));
+        WebElement specificFieldLabel = inputFieldLabels.get(nthLabel);
+        Assertions.assertEquals(expectedLabelText,specificFieldLabel.getText());
+
+
+    }
+
+    @Then("{string} should be displayed for {int} field")
+    public void should_be_displayed_for_field(String expectedFeedback, Integer nth) {
+        List <WebElement> inputFieldsFeedback = driver.findElements(By.className("invalid-feedback"));
+        WebElement specificInputFeedback = inputFieldsFeedback.get(nth);
+        //Assert text is correct and is visible
+        Assertions.assertTrue(specificInputFeedback.isDisplayed());
+        Assertions.assertEquals(expectedFeedback,specificInputFeedback.getText());
+
+    }
+    @Then("validation should pass on {int} field")
+    public void validation_should_pass_on_field(Integer nth) {
+        List <WebElement> inputFields = driver.findElements(By.tagName("input"));
+        WebElement specificField = inputFields.get(nth);
+        //assert that the backround image displays link to checkbox
+        String backgroundImage = specificField.getCssValue("background-image");
+        Assertions.assertEquals("url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e\")", backgroundImage, "The input field does not have a background image.");
+
+
+    }
+
+    @When("user enter {string} into {string} field and press enter")
+    public void user_enter_into_field_and_press_enter(String validInput, String locatorID) {
+        WebElement inputField = driver.findElement(By.id(locatorID));
+
+        inputField.click();
+        inputField.sendKeys(validInput);
+        inputField.sendKeys(Keys.ENTER);
+
+    }
+
+
 }
