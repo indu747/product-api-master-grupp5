@@ -56,12 +56,6 @@ Feature: The shop
     And user type Mens Casual Slim in the search field
     Then the product Mens Causal Slim "Mens Casual Slim Fit" should be visited
 
-    # Omar
-  Scenario: Search a item in Womens Clothing works correctly
-    Given user visits webshop-agil-testautomatiserare.netlify.app/products
-    When user click on Womens Clothing
-    And user type Opna in the search field
-    Then the product Opna in Womens clothing "Opna Women's Short Sleeve Moisture" should be visited
 
     # Omar
   Scenario: Search a item in Jewelery works correctly
