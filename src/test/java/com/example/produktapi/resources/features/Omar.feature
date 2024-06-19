@@ -41,3 +41,31 @@ Feature: The shop
     When user type Pierced in the search field
     Then the product "Pierced Owl Rose Gold Plated Stainless Steel Double" should be visited
     And the product, item "Mens Casual Premium Slim Fit T-Shirts" should not be visited
+
+    # Omar
+  Scenario: Search a item in electronics works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user click on Electronics
+    And user type Silicon in the search field
+    Then the product Silicon Power "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5" should be visited
+
+    # Omar
+  Scenario: Search a item in Mens Clothing works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user click on Mens Clothing
+    And user type Mens Casual Slim in the search field
+    Then the product Mens Causal Slim "Mens Casual Slim Fit" should be visited
+
+    # Omar
+  Scenario: Search a item in Womens Clothing works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user click on Womens Clothing
+    And user type Opna in the search field
+    Then the product Opna in Womens clothing "Opna Women's Short Sleeve Moisture" should be visited
+
+    # Omar
+  Scenario: Search a item in Jewelery works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/products
+    When user click on category Jewelery
+    And user type White Gold in the search field
+    Then the product White Gold in Jewelery "White Gold Plated Princess" should be visited
