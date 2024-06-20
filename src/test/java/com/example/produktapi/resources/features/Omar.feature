@@ -70,4 +70,3 @@ Feature: The shop
     And user type White Gold in the search field
     Then the product White Gold in Jewelery "White Gold Plated Princess" should be visited
 
-
