@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -19,13 +20,14 @@ import java.time.Duration;
 import static com.example.produktapi.hooks.SetupHooks.driver;
 
 public class PatriciaStepDefinitions {
+
     public PatriciaStepDefinitions() {this.driver = SetupHooks.getDriver();}
 
     private WebDriver driver;
 
+
     @Given("the user is on mans clothing")
     public void the_user_is_on_mans_clothing() {
-        driver = new ChromeDriver();
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
@@ -95,7 +97,6 @@ public class PatriciaStepDefinitions {
 
     @Given("the user is on the homepage")
     public void the_user_is_on_the_homepage() {
-        driver = new ChromeDriver();
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 
     }
