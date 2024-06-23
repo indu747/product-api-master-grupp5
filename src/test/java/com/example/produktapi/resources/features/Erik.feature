@@ -104,7 +104,7 @@ Feature: Erik
           | "Jewelery"|"SolGold Petite Micropave"   | "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet"|863.0 |
           | "Jewelery"|"White Gold Plated Princess" |"Pierced Owl Rose Gold Plated Stainless Steel Double"                         |20.98 |
 
-Scenario Outline: Validation works on Billing section
+Scenario Outline: Validation works on all fields in billing section
   Given user is on "checkout_page"
   When user enter nothing into <locatorID> field and press enter
   Then on the <nth> field should have <correct label> as label
@@ -120,6 +120,19 @@ Scenario Outline: Validation works on Billing section
     |"country"  |4    |"Please select a valid country."                          |"Sweden"       |"Country"    |
     |"city"     |5    |"Please provide a valid state."                           |"stockholm"    |"City"       |
     |"zip"      |6    |"Zip code required."                                      |"666 66"       |"Zip"        |
+
+Scenario Outline: Validation works on all fields in card section
+  Given user is on "checkout_page"
+  When user scrolls down to <nth> card field
+  When user enter nothing into <nth> field and press enter
+  Then <invalid message> error message should be displayed for <nth> field
+  Then on the <nth> field should have <correct label> as label in the card section
+  When When user enter <validinput> into <nth> field and press enter
+  Then Then validation should pass on <nth> field
+  Examples:
+    | nth | invalid message                           | correct label    | validinput         | locatorID          |
+    |   0 |   "Name on card is required"              |   "Name on card" |"Erik Östlind"      |     "cc-name"      |
+
 
 
 
