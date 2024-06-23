@@ -420,40 +420,43 @@ public class ErikStepDefinitions {
 
     }
     @When("user scrolls down to {int} card field")
-    public void user_scrolls_down_to_card_field(Integer nthField) {
+    public void user_scrolls_down_to_card_field(int nthField) {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(specificField));
 
     }
     @When("user enter nothing into {int} field and press enter")
-    public void user_enter_nothing_into_field_and_press_enter(Integer nthField) {
-
+    public void user_enter_nothing_into_field_and_press_enter(int nthField) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement cardField = driver.findElement(By.id("card"));
+
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
+
         specificField.click();
         specificField.sendKeys(Keys.ENTER);
     }
     @Then("{string} error message should be displayed for {int} field")
-    public void error_message_should_be_displayed_for_field(String expectedFeedback, Integer nthFeedback) {
+    public void error_message_should_be_displayed_for_field(String expectedFeedback, int nthFeedback) {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> invalidFeedBackList = cardField.findElements(By.className("invalid-feedback"));
         WebElement specificFeedback = invalidFeedBackList.get(nthFeedback);
 
-        //ASSErt text is displayed
+        //Assert text is displayed
         boolean isFeedBackDisplayed = specificFeedback.isDisplayed();
         Assertions.assertTrue(isFeedBackDisplayed);
-        //ASSERT ON TEXT
+        //Assert on text
         Assertions.assertEquals(expectedFeedback, specificFeedback.getText());
 
     }
     @Then("on the {int} field should have {string} as label in the card section")
-    public void on_the_field_should_have_as_label_in_the_card_section(Integer nthLabel, String expectedLabel) {
+    public void on_the_field_should_have_as_label_in_the_card_section(int nthLabel, String expectedLabel) {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> labelList = cardField.findElements(By.tagName("label"));
         WebElement specificLabel = labelList.get(nthLabel);
@@ -461,18 +464,19 @@ public class ErikStepDefinitions {
         Assertions.assertEquals(expectedLabel,specificLabel.getText());
     }
     @When("When user enter {string} into {int} field and press enter")
-    public void when_user_enter_into_field_and_press_enter(String validText, Integer nthField) {
+    public void when_user_enter_into_field_and_press_enter(String validText, int nthField) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
-
+        wait.until(ExpectedConditions.elementToBeClickable(specificField));
         specificField.click();
         specificField.sendKeys(validText);
         specificField.sendKeys(Keys.ENTER);
     }
 
     @Then("Then validation should pass on {int} field")
-    public void then_validation_should_pass_on_field(Integer nthField) {
+    public void then_validation_should_pass_on_field(int nthField) {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);

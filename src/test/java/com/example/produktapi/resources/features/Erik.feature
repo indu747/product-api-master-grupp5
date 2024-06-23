@@ -130,8 +130,12 @@ Scenario Outline: Validation works on all fields in card section
   When When user enter <validinput> into <nth> field and press enter
   Then Then validation should pass on <nth> field
   Examples:
-    | nth | invalid message                           | correct label    | validinput         | locatorID          |
-    |   0 |   "Name on card is required"              |   "Name on card" |"Erik Östlind"      |     "cc-name"      |
+    | nth | invalid message                  | correct label        | validinput        |
+    |  0  | "Name on card is required"       | "Name on card"       | "Erik Östlind"    |
+    |  1  | "Credit card number is required" | "Credit card number" | "1234567898765432"|
+    |  2  | "Expiration date required"       | "Expiration"         | "12/28"           |
+    |  3  |"Security code required"          | "CVV"                | "123"             |
+
 
 
 
