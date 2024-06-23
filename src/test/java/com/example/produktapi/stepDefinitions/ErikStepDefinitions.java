@@ -420,11 +420,12 @@ public class ErikStepDefinitions {
 
     }
     @When("user scrolls down to {int} card field")
-    public void user_scrolls_down_to_card_field(int nthField) {
+    public void user_scrolls_down_to_card_field(int nthField) throws InterruptedException {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
+        Thread.sleep(500);
 
         //((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
@@ -471,6 +472,8 @@ public class ErikStepDefinitions {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
+
         wait.until(ExpectedConditions.elementToBeClickable(specificField));
         specificField.click();
         specificField.sendKeys(validText);
