@@ -84,6 +84,18 @@ Feature: Patricia
         Given the user is on the homepage
         Then the text should be this "This shop is all you need"
 
+      Scenario: Verify that you can add a fjallraven to checkout
+        Given the user is on mans clothing
+        When user add fjallraven
+        Then the product will be added to checkout "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+
+      Scenario: Veriyfy that you can add a Tshirt to Checkout
+        Given the user is on mans clothing
+        When user add t-shirt
+        Then t-shirt should be added to checkout "Mens Casual Premium Slim Fit T-Shirts"
+
+
+
 
 
 
