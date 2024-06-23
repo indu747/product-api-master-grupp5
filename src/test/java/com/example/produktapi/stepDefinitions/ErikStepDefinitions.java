@@ -430,6 +430,7 @@ public class ErikStepDefinitions {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(specificField));
+        wait.until(ExpectedConditions.elementToBeClickable(specificField));
 
     }
     @When("user enter nothing into {int} field and press enter")

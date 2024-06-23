@@ -14,8 +14,6 @@ public class SetupHooks {
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox");
-
-
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
