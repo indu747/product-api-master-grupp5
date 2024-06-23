@@ -127,7 +127,7 @@ Scenario Outline: Validation works on all fields in card section
   When user enter nothing into <nth> field and press enter
   Then <invalid message> error message should be displayed for <nth> field
   Then on the <nth> field should have <correct label> as label in the card section
-  When When user enter <validinput> into <nth> field and press enter
+  When  user enter <validinput> into <nth> field and press enter
   Then Then validation should pass on <nth> field
   Examples:
     | nth | invalid message                  | correct label        | validinput        |

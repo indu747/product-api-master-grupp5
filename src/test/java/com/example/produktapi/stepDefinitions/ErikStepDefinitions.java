@@ -466,8 +466,8 @@ public class ErikStepDefinitions {
         //Assert the label is correct
         Assertions.assertEquals(expectedLabel,specificLabel.getText());
     }
-    @When("When user enter {string} into {int} field and press enter")
-    public void when_user_enter_into_field_and_press_enter(String validText, int nthField) {
+    @When("user enter {string} into {int} field and press enter")
+    public void user_enter_into_field_and_press_enter(String validText, int nthField) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
