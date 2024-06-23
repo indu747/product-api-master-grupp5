@@ -424,8 +424,9 @@ public class ErikStepDefinitions {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
         WebElement specificField = inputList.get(nthField);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
 
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        //((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(specificField));
