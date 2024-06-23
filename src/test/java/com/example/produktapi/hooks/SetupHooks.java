@@ -13,12 +13,7 @@ public class SetupHooks {
     public void setup(){
         ChromeOptions options = new ChromeOptions();
 
-        options.addArguments(
-                "--headless",
-                "--window-size=1920,1080",
-                "--disable-gpu",
-                "--no-sandbox"
-                );
+        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox");
 
 
         driver = new ChromeDriver(options);
