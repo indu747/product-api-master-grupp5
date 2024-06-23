@@ -480,7 +480,7 @@ public class ErikStepDefinitions {
         specificField.sendKeys(Keys.ENTER);
     }
 
-    @Then("Then validation should pass on {int} field")
+    @Then("validation should pass on {int} field")
     public void then_validation_should_pass_on_field(int nthField) {
         WebElement cardField = driver.findElement(By.id("card"));
         List <WebElement> inputList = cardField.findElements(By.tagName("input"));
