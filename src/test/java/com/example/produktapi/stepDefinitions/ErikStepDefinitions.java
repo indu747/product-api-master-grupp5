@@ -419,6 +419,77 @@ public class ErikStepDefinitions {
         inputField.sendKeys(Keys.ENTER);
 
     }
+    @When("user scrolls down to {int} card field")
+    public void user_scrolls_down_to_card_field(int nthField) throws InterruptedException {
+        WebElement cardField = driver.findElement(By.id("card"));
+        List <WebElement> inputList = cardField.findElements(By.tagName("input"));
+        WebElement specificField = inputList.get(nthField);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
+        Thread.sleep(500);
+
+        //((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(specificField));
+        wait.until(ExpectedConditions.elementToBeClickable(specificField));
+
+    }
+    @When("user enter nothing into {int} field and press enter")
+    public void user_enter_nothing_into_field_and_press_enter(int nthField) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement cardField = driver.findElement(By.id("card"));
+
+        List <WebElement> inputList = cardField.findElements(By.tagName("input"));
+        WebElement specificField = inputList.get(nthField);
+
+        specificField.click();
+        specificField.sendKeys(Keys.ENTER);
+    }
+    @Then("{string} error message should be displayed for {int} field")
+    public void error_message_should_be_displayed_for_field(String expectedFeedback, int nthFeedback) {
+        WebElement cardField = driver.findElement(By.id("card"));
+        List <WebElement> invalidFeedBackList = cardField.findElements(By.className("invalid-feedback"));
+        WebElement specificFeedback = invalidFeedBackList.get(nthFeedback);
+
+        //Assert text is displayed
+        boolean isFeedBackDisplayed = specificFeedback.isDisplayed();
+        Assertions.assertTrue(isFeedBackDisplayed);
+        //Assert on text
+        Assertions.assertEquals(expectedFeedback, specificFeedback.getText());
+
+    }
+    @Then("on the {int} field should have {string} as label in the card section")
+    public void on_the_field_should_have_as_label_in_the_card_section(int nthLabel, String expectedLabel) {
+        WebElement cardField = driver.findElement(By.id("card"));
+        List <WebElement> labelList = cardField.findElements(By.tagName("label"));
+        WebElement specificLabel = labelList.get(nthLabel);
+        //Assert the label is correct
+        Assertions.assertEquals(expectedLabel,specificLabel.getText());
+    }
+    @When("user enter {string} into {int} field and press enter")
+    public void user_enter_into_field_and_press_enter(String validText, int nthField) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement cardField = driver.findElement(By.id("card"));
+        List <WebElement> inputList = cardField.findElements(By.tagName("input"));
+        WebElement specificField = inputList.get(nthField);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificField);
+
+        wait.until(ExpectedConditions.elementToBeClickable(specificField));
+        specificField.click();
+        specificField.sendKeys(validText);
+        specificField.sendKeys(Keys.ENTER);
+    }
+
+    @Then("validation should pass on {int} billing field")
+    public void then_validation_should_pass_on_billing_field(int nthField) {
+        WebElement cardField = driver.findElement(By.id("card"));
+        List <WebElement> inputList = cardField.findElements(By.tagName("input"));
+        WebElement specificField = inputList.get(nthField);
+        //assert that the backround image displays link to checkbox
+        String backgroundImage = specificField.getCssValue("background-image");
+        Assertions.assertEquals("url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e\")", backgroundImage, "The input field does not have a background image.");
+
+    }
 
 
 }
