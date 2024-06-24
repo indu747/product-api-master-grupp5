@@ -584,6 +584,18 @@ public class ErikStepDefinitions {
 
 
     }
+    @Then("the {int} in the footer is visible")
+    public void the_in_the_footer_is_visible(int nthLink) throws InterruptedException {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        List <WebElement> footerLinks = footer.findElements(By.tagName("a"));
+        WebElement specificLink = footerLinks.get(nthLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificLink);
+        //Wait a little bit for scroll to happen
+        Thread.sleep(500);
+        boolean isLinkVisible = specificLink.isDisplayed();
+
+        Assertions.assertTrue(isLinkVisible);
+            }
 
 
 }

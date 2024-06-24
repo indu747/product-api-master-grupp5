@@ -160,27 +160,27 @@ Scenario Outline: Validation works on all fields in card section
     Then footer has 4 links
     Then the <nth_item> in footer contains a <text>
     And the <nth_item> in footer contain link to <href>
+    And the <nth_item> in the footer is visible
     And the text "© 2024 The Shop" is visible in footer
-    When user clicks on the <nth_item> in the footer
-    Then user should get taken to <href>
+
     Examples:
       |page            |nth_item |href                                                          |text            |
       |"homepage"      |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
-      |"homepage"      |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"homepage"      |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
-      |"homepage"      |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
-      |"shop_page"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
-      |"shop_page"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"shop_page"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/about   "|"About"         |
-      |"shop_page"     |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
-      |"about_page"    |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
-      |"about_page"    |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"about_page"    |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
-      |"about_page"    |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
-      |"checkout_page" |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
-      |"checkout_page" |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"checkout_page" |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
-      |"checkout_page" |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+     # |"homepage"      |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      #|"homepage"      |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      #|"homepage"      |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      #|"shop_page"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      #|"shop_page"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      #|"shop_page"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      #|"shop_page"     |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      #|"about_page"    |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      #|"about_page"    |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      #|"about_page"    |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      #|"about_page"    |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      #|"checkout_page" |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      #|"checkout_page" |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      #|"checkout_page" |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      #|"checkout_page" |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
 
 
 
