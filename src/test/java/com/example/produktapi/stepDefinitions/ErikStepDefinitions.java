@@ -491,5 +491,99 @@ public class ErikStepDefinitions {
 
     }
 
+    @When("user select payment method paypal")
+    public void user_select_payment_method_paypal() throws InterruptedException {
+        WebElement payPalSelect =driver.findElement(By.id("paypal"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", payPalSelect);
+        Thread.sleep(300);
+
+        payPalSelect.click();
+        //assert it is clicked
+        Assertions.assertTrue(payPalSelect.isSelected());
+    }
+    @Then("none of the credit card input fields should be visible")
+    public void none_of_the_credit_card_input_fields_should_be_visible() {
+        WebElement cardInputSection = driver.findElement(By.id("card"));
+        Assertions.assertFalse(cardInputSection.isDisplayed());
+        }
+    @Then("the text {string} will be displayed")
+    public void the_text_will_be_displayed(String expectedText) {
+       String actualText = driver.findElement(By.id("paypalInfo")).getText();
+       Assertions.assertEquals(expectedText,actualText);
+    }
+
+    @Then("the first h2 contains the text {string}")
+    public void the_first_h2_contains_the_text(String expectedH2Text) {
+        String actualText = driver.findElement(By.tagName("h2")).getText();
+        Assertions.assertEquals(expectedH2Text,actualText);
+    }
+    @Then("the lead contains the text {string}")
+    public void the_lead_contains_the_text(String expectedText) {
+        String actualText = driver.findElement(By.className("lead")).getText();
+        Assertions.assertEquals(expectedText,actualText);
+
+    }
+    @Then("the first h4 contains the text {string}")
+    public void the_first_h4_contains_the_text(String expectedText) {
+      List  <WebElement> allHfourTags = driver.findElements(By.tagName("h4"));
+      Assertions.assertEquals(expectedText,allHfourTags.get(0).getText());
+    }
+    @Then("the second h4 contains the text {string}")
+    public void the_second_h4_contains_the_text(String expectedText) {
+        List  <WebElement> allHfourTags = driver.findElements(By.tagName("h4"));
+        Assertions.assertEquals(expectedText,allHfourTags.get(1).getText());
+    }
+    @Then("the third h4 contains the text {string}")
+    public void the_third_h4_contains_the_text(String expectedText) {
+        List  <WebElement> allHfourTags = driver.findElements(By.tagName("h4"));
+        Assertions.assertEquals(expectedText,allHfourTags.get(2).getText());
+    }
+    @Then("the submit button contain the text {string}")
+    public void the_submit_button_contain_the_text(String expectedText) {
+        String checkoutButtonText = driver.findElement(By.xpath("//button[@type='submit']")).getText();
+        Assertions.assertEquals(expectedText,checkoutButtonText);
+    }
+
+    @Then("footer has {int} links")
+    public void footer_has_links(Integer expectedAmountOfLinksInFooter) {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        List <WebElement> footerLinks = footer.findElements(By.tagName("a"));
+
+        Assertions.assertEquals(expectedAmountOfLinksInFooter,footerLinks.size());
+        }
+    @Then("the {int} in footer contains a {string}")
+    public void the_in_footer_contains_a(Integer nthLinkText, String expectedText) {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        List <WebElement> footerLinks = footer.findElements(By.tagName("a"));
+        Assertions.assertEquals(expectedText,footerLinks.get(nthLinkText).getText());
+            }
+    @Then("the {int} in footer contain link to {string}")
+    public void the_in_footer_contain_link_to(Integer nthHref, String expectedHref) {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        List <WebElement> footerLinks = footer.findElements(By.tagName("a"));
+        Assertions.assertEquals(expectedHref,footerLinks.get(nthHref).getAttribute("href"));
+    }
+    @Then("the text {string} is visible in footer")
+    public void the_text_is_visible_in_footer(String expectedText) {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+
+        Assertions.assertEquals(expectedText,footer.findElement(By.tagName("p")).getText());
+    }
+    @When("user clicks on the {int} in the footer")
+    public void user_clicks_on_the_in_the_footer(Integer nthLink) throws InterruptedException {
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        List <WebElement> footerLinks = footer.findElements(By.tagName("a"));
+        WebElement specificLink = footerLinks.get(nthLink);
+        //Scroll to link
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", specificLink);
+        //Wait a little bit for scroll to happen
+        Thread.sleep(500);
+        //Click the nth link
+        specificLink.click();
+
+
+
+    }
+
 
 }

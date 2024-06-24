@@ -27,18 +27,22 @@ Feature: Erik
       |"homepage"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
       |"homepage"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
       |"homepage"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"about_page"   |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"homepage"     |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
       |"homepage"     |4        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
-      |"about_page"   |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
       |"shop_page"    |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
       |"shop_page"    |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
       |"shop_page"    |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"about_page"   |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"shop_page"    |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
       |"shop_page"    |4        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
+      |"about_page"   |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
+      |"about_page"   |1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"about_page"   |2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"about_page"   |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"about_page"   |4        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
       |"checkout_page"|0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"🛍️ The Shop"   |
       |"checkout_page"|1        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
       |"checkout_page"|2        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
-      |"about_page"   |3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"checkout_page"|3        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
       |"checkout_page"|4        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"🛒 Checkout"   |
 
 #SHOP FEATURE
@@ -103,7 +107,7 @@ Feature: Erik
           | category  | title                       |title2                                                                        | total|
           | "Jewelery"|"SolGold Petite Micropave"   | "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet"|863.0 |
           | "Jewelery"|"White Gold Plated Princess" |"Pierced Owl Rose Gold Plated Stainless Steel Double"                         |20.98 |
-
+#CHECKOUT
 Scenario Outline: Validation works on all fields in billing section
   Given user is on "checkout_page"
   When user enter nothing into <locatorID> field and press enter
@@ -135,6 +139,48 @@ Scenario Outline: Validation works on all fields in card section
     |  1  | "Credit card number is required" | "Credit card number" | "1234567898765432"|
     |  2  | "Expiration date required"       | "Expiration"         | "12/28"           |
     |  3  |"Security code required"          | "CVV"                | "123"             |
+
+  Scenario: When the user choses paypal the card fields are no longer visible and a text is displayed
+    Given user is on "checkout_page"
+    When user select payment method paypal
+    Then none of the credit card input fields should be visible
+    And the text "You will be redirected to PayPal in the next step." will be displayed
+
+    Scenario: The checkout page contains all the correct elements
+      Given user is on "checkout_page"
+      Then the first h2 contains the text "Checkout form"
+      And the lead contains the text "Fill in the form and edit the cart if you like 💫"
+      And the first h4 contains the text "Your cart"
+      And the second h4 contains the text "Billing address"
+      And the third h4 contains the text "Payment"
+      And the submit button contain the text "Continue to checkout"
+
+  Scenario Outline: Footer contains all elements and are clickable on any page
+    Given user is on <page>
+    Then footer has 4 links
+    Then the <nth_item> in footer contains a <text>
+    And the <nth_item> in footer contain link to <href>
+    And the text "© 2024 The Shop" is visible in footer
+    When user clicks on the <nth_item> in the footer
+    Then user should get taken to <href>
+    Examples:
+      |page            |nth_item |href                                                          |text            |
+      |"homepage"      |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"homepage"      |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"homepage"      |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"homepage"      |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      |"shop_page"     |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"shop_page"     |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"shop_page"     |2        |"https://webshop-agil-testautomatiserare.netlify.app/about   "|"About"         |
+      |"shop_page"     |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      |"about_page"    |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"about_page"    |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"about_page"    |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"about_page"    |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
+      |"checkout_page" |0        |"https://webshop-agil-testautomatiserare.netlify.app/"        |"Home"          |
+      |"checkout_page" |1        |"https://webshop-agil-testautomatiserare.netlify.app/products"|"Shop"          |
+      |"checkout_page" |2        |"https://webshop-agil-testautomatiserare.netlify.app/about"   |"About"         |
+      |"checkout_page" |3        |"https://webshop-agil-testautomatiserare.netlify.app/checkout"|"Checkout"      |
 
 
 
