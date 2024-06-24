@@ -16,7 +16,6 @@ public class SetupHooks {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
-
     @After
     public void closeDriver(){
         if (driver != null){
