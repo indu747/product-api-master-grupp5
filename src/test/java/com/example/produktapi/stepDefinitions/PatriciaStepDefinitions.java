@@ -2,6 +2,7 @@ package com.example.produktapi.stepDefinitions;
 
 import com.example.produktapi.hooks.SetupHooks;
 import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,7 +22,9 @@ import static com.example.produktapi.hooks.SetupHooks.driver;
 
 public class PatriciaStepDefinitions {
 
-    public PatriciaStepDefinitions() {this.driver = SetupHooks.getDriver();}
+    public PatriciaStepDefinitions() {
+        this.driver = SetupHooks.getDriver();
+    }
 
     private WebDriver driver;
 
@@ -32,16 +35,19 @@ public class PatriciaStepDefinitions {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card")));
     }
+
     @Then("the title of the product should be {string}")
     public void the_title_of_the_product_should_be(String expectedTitle) {
         String actualTitle = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[1]")).getText();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        Assertions.assertEquals(expectedTitle, actualTitle);
     }
+
     @Then("the price should be {string}")
     public void the_price_should_be(String expectedPrice) {
         String actualPrice = driver.findElement(By.xpath("//strong[text()='$ 109.95']")).getText();
         Assertions.assertEquals(expectedPrice, actualPrice);
     }
+
     @Then("the tittle of the product should be {string}")
     public void the_tittle_of_the_product_should_be(String expectedTitle) {
         String actualTitle = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[2]")).getText();
@@ -59,36 +65,43 @@ public class PatriciaStepDefinitions {
         String actualTitile = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[3]")).getText();
         Assertions.assertEquals(expectedTitle, actualTitile);
     }
+
     @Then("the price of the jacket should be {string}")
     public void the_price_of_the_jacket_should_be(String expectedPrice) {
         String actualPrice = driver.findElement(By.xpath("//strong[text()='$ 55.99']")).getText();
         Assertions.assertEquals(expectedPrice, actualPrice);
     }
+
     @Then("the title of the polo should be {string}")
     public void the_title_of_the_polo_should_be(String expectedTitile) {
         String actualTitile = driver.findElement(By.xpath("//h3[text()='Mens Casual Slim Fit']")).getText();
         Assertions.assertEquals(expectedTitile, actualTitile);
     }
+
     @Then("the price of the polo should be {string}")
     public void the_price_of_the_polo_should_be(String expectedPrice) {
         String actualPrice = driver.findElement(By.xpath("//strong[text()='$ 15.99']")).getText();
         Assertions.assertEquals(expectedPrice, actualPrice);
     }
+
     @Then("the description fjallraven should be {string}")
     public void the_description_fjallraven_should_be(String expectedDescription) {
         String actualDescription = driver.findElement(By.xpath("(//p[@class='card-text'])[1]")).getText();
         Assertions.assertEquals(expectedDescription, actualDescription);
     }
+
     @Then("the desription t-shirt shoud be {string}")
     public void the_desription_t_shirt_shoud_be(String expectedDescription) {
         String actualDesription = driver.findElement(By.xpath("(//p[@class='card-text'])[2]")).getText();
         Assertions.assertEquals(expectedDescription, actualDesription);
     }
+
     @Then("the description Jacket should be {string}")
     public void the_description_jacket_should_be(String expectedDescription) {
-        String actualDescription =driver.findElement(By.xpath("(//p[@class='card-text'])[3]")).getText();
-        Assertions.assertEquals( expectedDescription, actualDescription);
+        String actualDescription = driver.findElement(By.xpath("(//p[@class='card-text'])[3]")).getText();
+        Assertions.assertEquals(expectedDescription, actualDescription);
     }
+
     @Then("the desription Polo shpuld be {string}")
     public void the_desription_polo_shpuld_be(String expectedDescription) {
         String actualDescription = driver.findElement(By.xpath("//p[text()='Mer casual än såhär blir det inte!']")).getText();
@@ -100,52 +113,58 @@ public class PatriciaStepDefinitions {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 
     }
+
     @When("user use it with mobilesize")
     public void user_use_it_with_mobilesize() {
         Dimension newSize = new Dimension(550, 900);
         driver.manage().window().setSize(newSize);
 
     }
+
     @Then("user should be able to click on {string} in the middle of the page")
     public void user_should_be_able_to_click_on_in_the_middle_of_the_page(String expected) {
-    String actual = driver.findElement(By.tagName("button")).getText();
-     driver.findElement(By.tagName("button")).click();
-    Assertions.assertEquals(expected, actual);
+        String actual = driver.findElement(By.tagName("button")).getText();
+        driver.findElement(By.tagName("button")).click();
+        Assertions.assertEquals(expected, actual);
     }
 
     @Then("heading should be {string}")
     public void heading_should_be(String expectedFjallraven) {
-    String actualFjallraven = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[1]")).getText();
-    Assertions.assertEquals(expectedFjallraven, actualFjallraven);
+        String actualFjallraven = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[1]")).getText();
+        Assertions.assertEquals(expectedFjallraven, actualFjallraven);
 
     }
+
     @Then("Tshirt {string}")
     public void tshirt(String expectedTshirt) {
-    String actualTshirt = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[2]")).getText();
-    Assertions.assertEquals(expectedTshirt, actualTshirt);
+        String actualTshirt = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[2]")).getText();
+        Assertions.assertEquals(expectedTshirt, actualTshirt);
 
     }
+
     @Then("Jacket {string}")
     public void jacket(String expectedJacket) {
-    String actualJacket = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[3]")).getText();
-    Assertions.assertEquals(actualJacket, expectedJacket);
+        String actualJacket = driver.findElement(By.xpath("(//h3[@class='card-title fs-4'])[3]")).getText();
+        Assertions.assertEquals(actualJacket, expectedJacket);
 
     }
+
     @Then("Slim fit {string}")
     public void slim_fit(String expectedSlimFit) {
-    String actualSlimFit = driver.findElement(By.xpath("//h3[text()='Mens Casual Slim Fit']")).getText();
+        String actualSlimFit = driver.findElement(By.xpath("//h3[text()='Mens Casual Slim Fit']")).getText();
 
-    Assertions.assertEquals(expectedSlimFit, actualSlimFit);
+        Assertions.assertEquals(expectedSlimFit, actualSlimFit);
     }
 
     @When("user clicks on All")
     public void user_clicks_on_all() {
         driver.findElement(By.xpath("//a[contains(text(),'All')]")).click();
     }
+
     @Then("all products will shown")
     public void all_products_will_shown() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
-    Assertions.assertTrue(true);
+        Assertions.assertTrue(true);
     }
 
     @When("user clicks Jewelery")
@@ -153,38 +172,76 @@ public class PatriciaStepDefinitions {
         driver.findElement(By.xpath("//a[contains(text(),'Jewelery')]")).click();
 
     }
+
     @Then("Jewelery will shown")
     public void jewelery_will_shown() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
-         Assertions.assertTrue(true);
+        Assertions.assertTrue(true);
     }
+
     @When("user clicks on electronics")
     public void user_clicks_on_electronics() {
         driver.findElement(By.xpath("//a[contains(text(),'Electronics')]")).click();
 
     }
+
     @Then("electronics will shown")
     public void electronics_will_shown() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products#");
-    Assertions.assertTrue(true);
+        Assertions.assertTrue(true);
     }
+
     @Then("the text should be {string}")
     public void the_text_should_be(String expectedText) {
-       String actualText = driver.findElement(By.xpath("//p[text()[normalize-space()='Welcome to The Shop, your premier online destination for all things fashion, electronics, and jewelry! At The Shop, we pride ourselves on offering a curated selection of high-quality products to cater to your diverse needs and desires.']]")).getText();
-    Assertions.assertEquals(expectedText, actualText);
+        String actualText = driver.findElement(By.xpath("//p[text()[normalize-space()='Welcome to The Shop, your premier online destination for all things fashion, electronics, and jewelry! At The Shop, we pride ourselves on offering a curated selection of high-quality products to cater to your diverse needs and desires.']]")).getText();
+        Assertions.assertEquals(expectedText, actualText);
     }
+
     @Then("the text should be this {string}")
     public void the_text_should_be_this(String expectedText) {
-    String actualText =  driver.findElement(By.tagName("h2")).getText();
-    Assertions.assertEquals( expectedText, actualText);
+        String actualText = driver.findElement(By.tagName("h2")).getText();
+        Assertions.assertEquals(expectedText, actualText);
     }
 
 
+    @When("user add fjallraven")
+    public void user_add_fjallraven() {
+        driver.findElement(By.xpath("(//button[@class='btn btn-primary'])[1]")).click();
+    }
 
+    @Then("the product will be added to checkout {string}")
+    public void the_product_will_be_added_to_checkout(String expectedTitle) {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
+        String actualtitle = driver.findElement(By.tagName("h6")).getText();
+        Assertions.assertEquals(expectedTitle, actualtitle);
 
+    }
 
+    @When("user add t-shirt")
+    public void user_add_t_shirt() {
+        driver.findElement(By.xpath("(//button[@class='btn btn-primary'])[2]")).click();
 
+    }
+    @Then("t-shirt should be added to checkout {string}")
+    public void t_shirt_should_be_added_to_checkout(String expectedName) {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
+       String actualName =  driver.findElement(By.xpath("(//h6[@class='my-0 w-75'])[1]")).getText();
+        Assertions.assertEquals(expectedName, actualName);
+    }
 
+    @When("user att Jacket")
+    public void user_att_jacket() {
+        driver.findElement(By.xpath("(//button[@class='btn btn-primary'])[3]")).click();
+
+    }
+    @Then("jacket should be added to checkout {string}")
+    public void jacket_should_be_added_to_checkout(String expectedJacket) {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        String actualName = driver.findElement(By.xpath("(//h6[@class='my-0 w-75'])[2]")).getText();
+        Assertions.assertEquals(expectedJacket, actualName);
+
+    }
 
 
 
