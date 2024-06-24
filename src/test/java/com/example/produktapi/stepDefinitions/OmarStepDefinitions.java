@@ -208,7 +208,7 @@ public class OmarStepDefinitions {
         driver.findElement(By.id("search")).sendKeys("opna");
     }
     // Omar
-    @Then("the product Opna in Womens clothing {string} should be visited")
+    @Then("the product Opna in Womens Clothing {string} should be visited")
     public void the_product_opna_in_womens_clothing_should_be_visited(String expectedProductOpnaShouldBeVisited) {
         String actualProductProductOpnaShouldBeVisited = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div/div/h3")).getText();
         // Assertions the Product "Opna Women's Short Sleeve Moisture" should be visited after typing "opna" in a search field
@@ -238,4 +238,3 @@ public class OmarStepDefinitions {
         Assertions.assertEquals(expectedProductWhiteGoldShouldBeVisited, actualProductWhiteGoldShouldBeVisited);
     }
 }
-
