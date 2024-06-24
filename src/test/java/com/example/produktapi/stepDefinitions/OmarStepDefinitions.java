@@ -233,6 +233,8 @@ public class OmarStepDefinitions {
     // Omar
     @Then("the product White Gold in Jewelery {string} should be visited")
     public void the_product_white_gold_in_jewelery_should_be_visited(String expectedProductWhiteGoldShouldBeVisited) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div/div/h3")));
         String actualProductWhiteGoldShouldBeVisited = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div/div/h3")).getText();
         // Assertions the Product "White Gold Plated Princess" should be visited after typing "White Gold" in a search field
         Assertions.assertEquals(expectedProductWhiteGoldShouldBeVisited, actualProductWhiteGoldShouldBeVisited);
