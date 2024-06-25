@@ -69,3 +69,11 @@ Feature: The shop
     When user click on Womens Clothing
     And user type Opna in the search field
     Then the product Opna in Womens Clothing "Opna Women's Short Sleeve Moisture" should be visited
+
+    # Omar
+  Scenario: About page loads and works correctly
+    Given user visits webshop-agil-testautomatiserare.netlify.app/
+    When user click on navbar About
+    Then have text "About The Shop" should be visited
+    When user click on button To all products
+    Then the title of all products should be "The Shop | Products"
