@@ -1,7 +1,6 @@
 package com.example.produktapi.stepDefinitions;
 
 import com.example.produktapi.hooks.SetupHooks;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OmarStepDefinitions {
 
@@ -238,5 +239,36 @@ public class OmarStepDefinitions {
         String actualProductWhiteGoldShouldBeVisited = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div/div/h3")).getText();
         // Assertions the Product "White Gold Plated Princess" should be visited after typing "White Gold" in a search field
         Assertions.assertEquals(expectedProductWhiteGoldShouldBeVisited, actualProductWhiteGoldShouldBeVisited);
+    }
+    // Omar
+    @Given("user visits webshop-agil-testautomatiserare.netlify.app\\/")
+    public void user_visits_webshop_agil_testautomatiserare_netlify_app() {
+        // Navigate to webbshop app
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+    }
+    // Omar
+    @When("user click on navbar About")
+    public void user_click_on_navbar_about() {
+        // Navigate to the page "About"
+        driver.findElement(By.xpath("/html/body/header/div/div/ul/li[3]/a")).click();
+    }
+    // Omar
+    @Then("have text {string} should be visited")
+    public void have_text_should_be_visited(String expectedAboutTheShopTextShouldBeVisited) {
+        String actualAboutTheShopTextShouldBeVisited = driver.findElement(By.className("h2")).getText();
+        // Assertions the text "About The Shop" is visited in About page
+        Assertions.assertEquals(expectedAboutTheShopTextShouldBeVisited, actualAboutTheShopTextShouldBeVisited);
+    }
+    // Omar
+    @When("user click on button To all products")
+    public void user_click_on_button_to_all_products() {
+        // Navigate to all products
+        driver.findElement(By.xpath("/html/body/div[1]/div/div/button")).click();
+    }
+    // Omar
+    @Then("the title of all products should be {string}")
+    public void the_title_of_all_products_should_be(String expectedTitle) {
+        String actualTitle = driver.getTitle();
+        assertEquals(expectedTitle, actualTitle);
     }
 }
